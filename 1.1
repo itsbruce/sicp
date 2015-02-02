@@ -14,3 +14,15 @@ Exercise 1.1
 6
 16
 
+Exercise 1.2
+
+(/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7)))
+
+Exercise 1.3
+
+(define (sumTwoLargestSquares a b c)
+  (define (square x) (* x x))
+  (apply +
+    (map square
+      (list (max a b) (max (min a b) c)))))
+
