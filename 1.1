@@ -43,3 +43,10 @@ the code will be expanded until p is an operand of the if special form. That
 will evaluate its first operand, find it to be true and not progress to
 evaluate the second
 
+Exercise 1.6
+
+Alyssa's new-if function will cause the program to recur infinitely.  This is
+because (sqrt-iter (improve guess x) x) is passed as an operand to new-if and
+in Scheme's applicative-order evaluation, will be evaluated before new-if is
+applied to the result.  Scheme functions do not have the lazy evaluation
+properties of the if special form.
