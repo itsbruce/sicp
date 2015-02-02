@@ -50,3 +50,26 @@ because (sqrt-iter (improve guess x) x) is passed as an operand to new-if and
 in Scheme's applicative-order evaluation, will be evaluated before new-if is
 applied to the result.  Scheme functions do not have the lazy evaluation
 properties of the if special form.
+
+Exercise 1.7
+
+The good-enough function accepts approximate results whose square differs from
+the original number by a fixed amount: 0.001.  For the square root of 2 this
+represents a tiny error measured as a percentage of the actual value.  For the
+square root of 0.002, good-enough would accept answers which were practically
+the square roots of 0.001 or 0.003.  So the smaller the numbers used, the
+larger the proportional error becomes, to the point of absurdity.
+
+This might suggest that the larger the numbers, the better the result.
+Unfortunately, digital computers are strictly limited in the precision of the
+answers they can give in anything but simple power of two arithmetic.  This
+means that there is a granularity to the results of floating point arithmetic.
+With large numbers, the actual size of the granularity increases to the point
+where, in the sqrt-iter function, the recursion could never terminate because
+it would be impossible to approach the answer within a 0.001 difference.  For
+example, using SCM the square root of 10000000000000 evaluates to
+3162277.6601683795, which when squared evaluates to 10000000000000.002, an
+answer which is not good-enough.  However, simple experimentation with
+marginally smaller square root values can only square to 9999999999999.996.  It
+is not possible, with that Scheme implementation, to describe a number which
+will square to within 0.001 of the desired result.
